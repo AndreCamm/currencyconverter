@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import '../App.scss';
 
 function Converter() {
   const [currencyOne, setCurrencyOne] = useState("none");
@@ -46,9 +47,10 @@ function Converter() {
   }
 
   return (
-    <div>
+    <div className="wrapper">
       {showError && "Error"}
-      <form onSubmit={(e) => doSubmit(e)}>
+      <h1>Currency Converter</h1>
+      <form className="form-wrap card" onSubmit={(e) => doSubmit(e)}>
         <input onChange={(e) => setAmount(e.target.value)} type="text" />
         {currencyOne != "none" && (
           <img
@@ -88,7 +90,7 @@ function Converter() {
               >{`${country} - ${countryList[country]}`}</option>
             ))}
         </select>
-        <input type="submit" value="Convert" />
+        <input className="submitButton" type="submit" value="Convert" />
       </form>
       {convertedValue}
     </div>
