@@ -39,7 +39,9 @@ function Converter() {
         );
         const calculated = await response.data;
         console.log(calculated);
-        setConvertedValue(calculated.rates[currencyTwo] * amount);
+        setConvertedValue(
+          Math.round(calculated.rates[currencyTwo] * amount * 100) / 100
+        ).toFixed(2);
       } catch (err) {
         console.log(`Unable to fetch curriencies: ${err}`);
       }
@@ -48,61 +50,72 @@ function Converter() {
 
   return (
     <div className="wrapper">
-      {showError && "There was an error, please try again."}
+      <div className="error-margin">
+        {showError && "There is a problem, please try again"}
+      </div>
       <form className="form-wrap card" onSubmit={(e) => doSubmit(e)}>
         <h1>Currency Converter</h1>
-        <select
-          className="currencySelect"
-          data-testid="currencyOne"
-          onChange={(val) => setCurrencyOne(val.target.value)}
-        >
-          <option value="none">Select a currency</option>
-          {Object.keys(countryList).length > 0 &&
-            Object.keys(countryList).map((country, key) => (
-              <option
-                data-testid="currencyOneOption"
-                value={country}
-              >{`${country} - ${countryList[country]}`}</option>
-            ))}
-        </select>
-        <input onChange={(e) => setAmount(e.target.value)} type="text" />
-        {currencyOne !== "none" && (
-          <img
-            alt="Currency Flag"
-            src={`https://www.countryflags.io/${currencyOne.substring(
-              0,
-              2
-            )}/flat/64.png`}
-          />
-        )}
-
-        {currencyTwo !== "none" && (
-          <img
-            alt="Currency Flag"
-            src={`https://www.countryflags.io/${currencyTwo.substring(
-              0,
-              2
-            )}/flat/64.png`}
-          />
-        )}
-        <select
-          className="currencySelect"
-          onChange={(val) => setCurrencyTwo(val.target.value)}
-        >
-          <option value="none">Select a currency</option>
-          {Object.keys(countryList).length > 0 &&
-            Object.keys(countryList).map((country, key) => (
-              <option
-                value={country}
-              >{`${country} - ${countryList[country]}`}</option>
-            ))}
-        </select>
+        <input
+          className="currencyInput"
+          placeholder="$0"
+          onChange={(e) => setAmount(e.target.value)}
+          type="text"
+        />
+        <div className="dropdown">
+          {currencyOne !== "none" && (
+            <img
+              alt="Currency Flag"
+              src={`https://www.countryflags.io/${currencyOne.substring(
+                0,
+                2
+              )}/flat/64.png`}
+            />
+          )}
+          <select
+            className="currencySelect"
+            data-testid="currencyOne"
+            onChange={(val) => setCurrencyOne(val.target.value)}
+          >
+            <option value="none">Select a currency</option>
+            {Object.keys(countryList).length > 0 &&
+              Object.keys(countryList).map((country, key) => (
+                <option
+                  data-testid="currencyOneOption"
+                  value={country}
+                >{`${country} - ${countryList[country]}`}</option>
+              ))}
+          </select>
+        </div>
+        To
+        <div className="dropdown">
+          {currencyTwo !== "none" && (
+            <img
+              alt="Currency Flag"
+              src={`https://www.countryflags.io/${currencyTwo.substring(
+                0,
+                2
+              )}/flat/64.png`}
+            />
+          )}
+          <select
+            className="currencySelect"
+            onChange={(val) => setCurrencyTwo(val.target.value)}
+          >
+            <option value="none">Select a currency</option>
+            {Object.keys(countryList).length > 0 &&
+              Object.keys(countryList).map((country, key) => (
+                <option
+                  value={country}
+                >{`${country} - ${countryList[country]}`}</option>
+              ))}
+          </select>
+        </div>
         <div className="button-wrapper">
           <input className="submitButton" type="submit" value="Convert" />
           <div className="chevron-wrap"></div>
         </div>
+        <div className="resultWrap">{convertedValue}</div>
       </form>
-      {convertedValue}
     </div>
   );
 }

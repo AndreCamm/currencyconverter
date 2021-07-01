@@ -2,6 +2,8 @@
 
 $coop-blue: #046ab8;
 $coop-dark: #002663;
+$coop-light: #0494cd;
+$error: rgb(255, 242, 243);
 
 * {
   font-family: "Montserrat";
@@ -21,23 +23,27 @@ body {
   justify-content: center;
   flex-flow: column;
   align-items: center;
+  height: 100vh;
 }
 
 .form-wrap {
   display: flex;
   flex-flow: column;
-  background-color: #f2f7fb;
+  background-color: white;
   padding: 40px 35px;
   border-radius: 5px;
 }
 
 .card {
+  min-width: 33%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
+  border: 2px solid transparent;
 }
 
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  border: 2px solid $coop-light;
 }
 
 .submitButton {
@@ -58,20 +64,35 @@ body {
   color: white;
 }
 
-.chevron-wrap {
-  background-color: $coop-blue;
-  position: relative;
-  right: 15%;
-}
-
 .button-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.currencySelect{
+.currencySelect {
   height: 3rem;
   border: none;
-  margin-top: 1rem;
   padding: 0 2rem;
+}
+.dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 5rem;
+}
+.currencyInput {
+  text-align: center;
+  height: 2.6rem;
+  font-size: 24px;
+  border: 1px solid lightgrey;
+}
+
+.error-margin{
+  background-color: $error;
+  font-weight: 500;
+}
+.resultWrap{
+  font-size: 24px;
+  text-align: center;
+  margin-top: 1rem;
 }
