@@ -1,52 +1,77 @@
-$coop-color: #c6538c;
-$border-dark: rgba($coop-color, 0.88);
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap");
 
+$coop-blue: #046ab8;
+$coop-dark: #002663;
 
-body{
+* {
+  font-family: "Montserrat";
+}
+
+h1 {
+  margin: 0 0 1rem 0;
+  color: $coop-dark;
+  font-size: 24px;
+}
+body {
   background-color: #dadada;
 }
 
-
-.wrapper{
+.wrapper {
   display: flex;
   justify-content: center;
   flex-flow: column;
   align-items: center;
 }
 
-.form-wrap{
+.form-wrap {
   display: flex;
   flex-flow: column;
-  background-color: white;
+  background-color: #f2f7fb;
   padding: 40px 35px;
   border-radius: 5px;
-  box-shadow: 1;
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.submitButton{
-  display: inline-block;
-    vertical-align: middle;
-    font: inherit;
-    text-align: center;
-    margin: 0;
-    box-shadow: 0 0 0 2px #046ab8 inset;
-    cursor: pointer;
-    overflow: visible;
-    padding: 15px 30px;
-    background-color: transparent;
-    border: none;
-    border-radius: 999px;
+.submitButton {
+  box-shadow: 0 0 0 2px $coop-blue inset;
+  cursor: pointer;
+  padding: 15px 30px;
+  background-color: white;
+  border: none;
+  border-radius: 99px;
+  color: $coop-blue;
+  font-weight: bold;
+  width: 100%;
+  transition: all 50ms linear;
 }
 
-.submitButton:hover{
-  background-color: #0494cd;
+.submitButton:hover {
+  background-color: $coop-blue;
+  color: white;
+}
+
+.chevron-wrap {
+  background-color: $coop-blue;
+  position: relative;
+  right: 15%;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.currencySelect{
+  height: 3rem;
+  border: none;
+  margin-top: 1rem;
+  padding: 0 2rem;
 }

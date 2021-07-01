@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import '../App.scss';
+import "../App.scss";
 
 function Converter() {
   const [currencyOne, setCurrencyOne] = useState("none");
@@ -30,7 +30,7 @@ function Converter() {
   async function doSubmit(e) {
     e.preventDefault();
     setShowError(false);
-    if (currencyOne == "none" || currencyTwo == "none" || amount == "")
+    if (currencyOne === "none" || currencyTwo === "none" || amount === "")
       setShowError(true);
     else {
       try {
@@ -48,19 +48,11 @@ function Converter() {
 
   return (
     <div className="wrapper">
-      {showError && "Error"}
-      <h1>Currency Converter</h1>
+      {showError && "There was an error, please try again."}
       <form className="form-wrap card" onSubmit={(e) => doSubmit(e)}>
-        <input onChange={(e) => setAmount(e.target.value)} type="text" />
-        {currencyOne != "none" && (
-          <img
-            src={`https://www.countryflags.io/${currencyOne.substring(
-              0,
-              2
-            )}/flat/64.png`}
-          />
-        )}
+        <h1>Currency Converter</h1>
         <select
+          className="currencySelect"
           data-testid="currencyOne"
           onChange={(val) => setCurrencyOne(val.target.value)}
         >
@@ -73,15 +65,30 @@ function Converter() {
               >{`${country} - ${countryList[country]}`}</option>
             ))}
         </select>
-        {currencyTwo != "none" && (
+        <input onChange={(e) => setAmount(e.target.value)} type="text" />
+        {currencyOne !== "none" && (
           <img
+            alt="Currency Flag"
+            src={`https://www.countryflags.io/${currencyOne.substring(
+              0,
+              2
+            )}/flat/64.png`}
+          />
+        )}
+
+        {currencyTwo !== "none" && (
+          <img
+            alt="Currency Flag"
             src={`https://www.countryflags.io/${currencyTwo.substring(
               0,
               2
             )}/flat/64.png`}
           />
         )}
-        <select onChange={(val) => setCurrencyTwo(val.target.value)}>
+        <select
+          className="currencySelect"
+          onChange={(val) => setCurrencyTwo(val.target.value)}
+        >
           <option value="none">Select a currency</option>
           {Object.keys(countryList).length > 0 &&
             Object.keys(countryList).map((country, key) => (
@@ -90,7 +97,10 @@ function Converter() {
               >{`${country} - ${countryList[country]}`}</option>
             ))}
         </select>
-        <input className="submitButton" type="submit" value="Convert" />
+        <div className="button-wrapper">
+          <input className="submitButton" type="submit" value="Convert" />
+          <div className="chevron-wrap"></div>
+        </div>
       </form>
       {convertedValue}
     </div>
