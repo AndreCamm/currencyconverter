@@ -73,6 +73,7 @@ body {
   height: 3rem;
   border: none;
   padding: 0 2rem;
+  max-width: 100%;
 }
 .dropdown {
   display: flex;
@@ -80,6 +81,7 @@ body {
   align-items: center;
   min-height: 5rem;
 }
+
 .currencyInput {
   text-align: center;
   height: 2.6rem;
@@ -87,12 +89,21 @@ body {
   border: 1px solid lightgrey;
 }
 
-.error-margin{
+.error-margin {
   background-color: $error;
   font-weight: 500;
 }
-.resultWrap{
+.resultWrap {
   font-size: 24px;
   text-align: center;
   margin-top: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    display: block;
+  }
+  .dropdown img {
+    width: 3rem;
+  }
 }
